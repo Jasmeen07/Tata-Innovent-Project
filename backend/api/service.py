@@ -7,6 +7,7 @@ import threading
 import time
 from datetime import datetime, timezone
 from typing import Any
+import os
 
 import cv2
 import numpy as np
@@ -63,7 +64,9 @@ class AeroGuardService:
         self.running = False
         if self.thread:
             self.thread.join(timeout=2)
-        self.camera_manager.stop_all()
+        #self.camera_manager.stop_all()
+    if os.getenv("RENDER") != "true":
+    self.camera_manager.start_all()
 
     def live_state(self, include_frame: bool = False) -> dict[str, Any]:
         """Return a snapshot of the live system state."""
