@@ -1,0 +1,2 @@
+"""AeroGuard AI backend package."""
+

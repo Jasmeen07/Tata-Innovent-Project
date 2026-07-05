@@ -1,0 +1,7 @@
+__pycache__/
+*.py[cod]
+.venv/
+backend/aeroguard.db
+backend/*.db
+backend/synthetic/*.mp4
+

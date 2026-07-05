@@ -1,0 +1,50 @@
+{
+  "app": {
+    "name": "AeroGuard AI",
+    "host": "0.0.0.0",
+    "port": 8000
+  },
+  "camera": {
+    "sources": [0],
+    "width": 960,
+    "height": 540,
+    "fps": 30,
+    "auto_reconnect_seconds": 2,
+    "lighting_enhancement": true
+  },
+  "detection": {
+    "backend": "mock",
+    "weights_path": "weights/yolov11_aeroguard.onnx",
+    "confidence_threshold": 0.35,
+    "input_size": 640,
+    "classes": [
+      "screwdriver",
+      "spanner",
+      "hammer",
+      "pliers",
+      "adjustable_wrench",
+      "socket_wrench",
+      "drill",
+      "flashlight",
+      "gloves",
+      "human_hand",
+      "toolbox",
+      "laptop",
+      "aircraft_panel"
+    ]
+  },
+  "tracking": {
+    "max_disappeared_frames": 45,
+    "iou_threshold": 0.25,
+    "history_limit": 300
+  },
+  "verification": {
+    "missing_warning_seconds": 10,
+    "critical_missing_seconds": 30,
+    "workspace_bounds": [0, 0, 960, 540]
+  },
+  "database": {
+    "path": "aeroguard.db"
+  }
+}
+
