@@ -6,16 +6,15 @@ import json
 from functools import lru_cache
 from pathlib import Path
 from typing import Any
+import os
 
 from pydantic import BaseModel, Field
 
 
 class AppConfig(BaseModel):
-    """Runtime API server configuration."""
-
     name: str = "AeroGuard AI"
     host: str = "0.0.0.0"
-    port: int = 8000
+    port: int = int(os.getenv("PORT", 8000))
 
 
 class CameraConfig(BaseModel):
