@@ -59,19 +59,19 @@ class AeroGuardService:
     #     self.thread.start()
 
     def start(self) -> None:
-    """Start cameras and the background AI processing loop."""
-
-    if self.running:
-        return
-
-    self.running = True
-
-    # Skip camera initialization on Render
-    if os.getenv("RENDER") != "true":
-        self.camera_manager.start_all()
-
-    self.thread = threading.Thread(target=self._loop, daemon=True)
-    self.thread.start()
+        """Start cameras and the background AI processing loop."""
+    
+        if self.running:
+            return
+    
+        self.running = True
+    
+        # Skip camera initialization on Render
+        if os.getenv("RENDER") != "true":
+            self.camera_manager.start_all()
+    
+        self.thread = threading.Thread(target=self._loop, daemon=True)
+        self.thread.start()
 
     # def stop(self) -> None:
     #     """Stop the AI processing loop and release cameras."""
@@ -83,16 +83,16 @@ class AeroGuardService:
     #     if os.getenv("RENDER") != "true":
     #         self.camera_manager.start_all()
     def stop(self) -> None:
-    """Stop the AI processing loop and release cameras."""
-
-    self.running = False
-
-    if self.thread:
-        self.thread.join(timeout=2)
-
-    # Only stop the camera if it was started
-    if os.getenv("RENDER") != "true":
-        self.camera_manager.stop_all()
+        """Stop the AI processing loop and release cameras."""
+    
+        self.running = False
+    
+        if self.thread:
+            self.thread.join(timeout=2)
+    
+        # Only stop the camera if it was started
+        if os.getenv("RENDER") != "true":
+            self.camera_manager.stop_all()
 
     def live_state(self, include_frame: bool = False) -> dict[str, Any]:
         """Return a snapshot of the live system state."""
