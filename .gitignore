@@ -6,3 +6,4 @@ backend/*.db
 backend/synthetic/*.mp4
 .vscode/
 .DS_Store
+backend/*.db-journal
