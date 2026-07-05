@@ -48,25 +48,51 @@ class AeroGuardService:
         self.latest_tracked: list[TrackedObject] = []
         self.last_update: datetime | None = None
 
+    # def start(self) -> None:
+    #     """Start cameras and the background AI processing loop."""
+
+    #     if self.running:
+    #         return
+    #     self.running = True
+    #     self.camera_manager.start_all()
+    #     self.thread = threading.Thread(target=self._loop, daemon=True)
+    #     self.thread.start()
+
     def start(self) -> None:
-        """Start cameras and the background AI processing loop."""
+    """Start cameras and the background AI processing loop."""
 
-        if self.running:
-            return
-        self.running = True
-        self.camera_manager.start_all()
-        self.thread = threading.Thread(target=self._loop, daemon=True)
-        self.thread.start()
+    if self.running:
+        return
 
-    def stop(self) -> None:
-        """Stop the AI processing loop and release cameras."""
+    self.running = True
 
-        self.running = False
-        if self.thread:
-            self.thread.join(timeout=2)
-        #self.camera_manager.stop_all()
+    # Skip camera initialization on Render
     if os.getenv("RENDER") != "true":
-    self.camera_manager.start_all()
+        self.camera_manager.start_all()
+
+    self.thread = threading.Thread(target=self._loop, daemon=True)
+    self.thread.start()
+
+    # def stop(self) -> None:
+    #     """Stop the AI processing loop and release cameras."""
+
+    #     self.running = False
+    #     if self.thread:
+    #         self.thread.join(timeout=2)
+    #     #self.camera_manager.stop_all()
+    #     if os.getenv("RENDER") != "true":
+    #         self.camera_manager.start_all()
+    def stop(self) -> None:
+    """Stop the AI processing loop and release cameras."""
+
+    self.running = False
+
+    if self.thread:
+        self.thread.join(timeout=2)
+
+    # Only stop the camera if it was started
+    if os.getenv("RENDER") != "true":
+        self.camera_manager.stop_all()
 
     def live_state(self, include_frame: bool = False) -> dict[str, Any]:
         """Return a snapshot of the live system state."""
