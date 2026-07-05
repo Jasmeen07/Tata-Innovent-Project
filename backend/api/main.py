@@ -80,3 +80,10 @@ def health() -> dict[str, str]:
     """Return a simple health probe for deployment checks."""
 
     return {"status": "ok", "service": settings.app.name}
+
+@app.get("/")
+def root():
+    return {
+        "status": "ok",
+        "message": "AeroGuard Backend Running"
+    }
