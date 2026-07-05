@@ -21,9 +21,15 @@ Modern aircraft maintenance dashboard built with React, Next.js, TailwindCSS, Ty
 - Optional Socket.io client support with REST polling every second as the reliable fallback.
 - Offline demo data when the FastAPI backend is not running.
 
-## Backend 
+## Backend Reference
 
-The dashboard was built against the FastAPI backend.
+The dashboard was built against the FastAPI backend extracted from:
+
+`C:\Users\jk082\Downloads\TATA INNOVENT PROJECT.zip`
+
+Reference files were copied to:
+
+`work/backend-reference`
 
 The backend exposes:
 
@@ -34,5 +40,51 @@ The backend exposes:
 - `GET /alerts`
 - `GET /report`
 - `GET /health`
+
+## Setup
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the dashboard:
+
+```bash
+npm run dev
+```
+
+Open:
+
+```text
+http://localhost:3000
+```
+
+## FastAPI Configuration
+
+By default the dashboard calls:
+
+```text
+http://localhost:8000
+```
+
+Override it with:
+
+```bash
+NEXT_PUBLIC_API_BASE_URL=http://localhost:8000 npm run dev
+```
+
+Run the backend from the referenced project:
+
+```bash
+python -m backend.run
+```
+
+## Production Build
+
+```bash
+npm run build
+```
 
 The app is typed and production-build verified.
