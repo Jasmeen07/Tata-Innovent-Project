@@ -33,11 +33,16 @@ backend/
 
 ## Quick Start
 
+## Quick Start
+
 ```bash
-cd /Users/nandinigarg/Documents/TATA\ INNOVENT\ PROJECT
+git clone https://github.com/Jasmeen07/Tata-Innovent-Project.git
+cd Tata-Innovent-Project
+
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r backend/requirements.txt
+
 python -m backend.run
 ```
 
@@ -53,6 +58,7 @@ Open:
 ## Detector Modes
 
 Default mode is `mock`, which allows the backend to run immediately.
+Real YOLO weights can be added later by placing a trained .onnx or .pt model inside backend/weights and updating the backend setting in configs/settings.json.
 
 To use YOLOv11 ONNX:
 

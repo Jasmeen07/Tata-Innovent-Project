@@ -4,4 +4,5 @@ __pycache__/
 backend/aeroguard.db
 backend/*.db
 backend/synthetic/*.mp4
-
+.vscode/
+.DS_Store
